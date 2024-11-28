@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Night Invite</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden; /* Prevent scrolling */
+            font-family: fantasy;
+        }
+        .image-container {
+            position: relative;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+			display: none;
+        }
+        .image-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Full height of the container */
+            object-fit: contain; /* Ensures the video scales correctly */
+        }
+        .image-container.active {
+            display: block;
+		}
+        /* Button */
+        .button {
+            position: absolute;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 25px;
+			font-family: "IM Fell English SC";
+            font-size: 26px;
+            font-weight: bold;
+            color: #000;
+            background-color: #FFDB58; /* Mustard yellow */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+        .button-yes {
+            bottom: 12%; /* 30px from bottom */
+            right: 40%; /* 30px from right */
+        }
+		.button-random-audio {
+            bottom: 12%;
+            right: 20%;
+        }
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .button {
+                font-size: 14px; /* Adjust button text size */
+                padding: 12px 20px; /* Adjust padding for smaller screens */
+            }
+			 .button-yes {
+                bottom: 15%; /* Adjust button position for smaller screens */
+                right: 15%;
+            }
+			.button-random-audio {
+                bottom: 15%;
+                right: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container active" id="video-1">
+        <video autoplay muted playsinline>
+            <source src="welcome.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="startAudio();showNext(1);">Are you ready?</button>
+    </div>
+	<div class="image-container" id="video-2">
+        <video autoplay muted playsinline>
+            <source src="letthe.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="showNext(2)">Start</button>
+    </div>
+	<div class="image-container" id="video-3">
+        <video autoplay muted playsinline>
+            <source src="letgamebegin.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="showNext(3)">Yes</button>
+    </div>
+	<div class="image-container" id="video-4">
+        <video autoplay muted playsinline>
+            <source src="youknowthis.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="showNext(4)">Of course</button>
+		<button class="button button-random-audio" onclick="playRandomAudio()">No idea!</button>
+    </div>
+	<div class="image-container" id="video-5">
+        <video autoplay muted playsinline>
+            <source src="riddle1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="showNext(5)">Next</button>
+		<button class="button button-random-audio" onclick="playRandomAudio()">No idea!</button>
+    </div>
+	<div class="image-container" id="video-6">
+        <video autoplay muted playsinline>
+            <source src="riddle2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="showNext(6)">Next</button>
+		<button class="button button-random-audio" onclick="playRandomAudio()">No idea!</button>
+    </div>
+	<div class="image-container" id="video-7">
+        <video autoplay muted playsinline>
+            <source src="riddle3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="showNext(7)">Next</button>
+		<button class="button button-random-audio" onclick="playRandomAudio()">No idea!</button>
+    </div>
+	<div class="image-container" id="video-8">
+        <video autoplay muted playsinline>
+            <source src="Youshallpass.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="button button-yes" onclick="endSequence()">Aye, great wizard!</button>
+    </div>
+	
+	
+	<!--<div class="container active" id="video-1">
+        <video autoplay muted playsinline>
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button onclick="showNext(1)">Next Video</button>
+    </div>-->
+	
+	<!-- Background Music -->
+    <audio id="background-music" autoplay loop>
+        <source src="Evenstar.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+	<audio id="audio-1" src=""></audio>
+	<audio id="audio-2" src=""></audio>
+	<audio id="audio-3" src="Gandalf game intro.mp3"></audio>
+	<audio id="audio-4" src="Ex bday theme riddle.mp3"></audio>
+	<audio id="audio-5" src="Ex Riddle 1.mp3"></audio>
+	<audio id="audio-6" src="Ex Riddle 2.mp3"></audio>
+	<audio id="audio-7" src="Ex Riddle 3.mp3"></audio>
+	<audio id="audio-8" src="Ex Gandalf Final speech.mp3"></audio>
+	<audio id="wrgansaudio1" src="Ex wrong answer messages1.mp3"></audio>
+	<audio id="wrgansaudio2" src="Ex wrong answer messages2.mp3"></audio>
+	<audio id="wrgansaudio3" src="Ex wrong answer messages3.mp3"></audio>
+	<audio id="wrgansaudio4" src="Ex wrong answer messages4.mp3"></audio>
+	<script>
+        //function navigateToNextPage() {
+        //    Redirect to the next page
+        //    window.location.href = "cantwait.html"; // Replace "nextpage.html" with your desired URL
+        //}
+		 // Ensure audio plays after user interaction
+        function startAudio() {
+            const music = document.getElementById("background-music");
+            music.play()
+                .then(() => {
+                    console.log("Audio is playing!");
+                    // Redirect to the next page after audio starts
+                    //setTimeout(() => {
+                    //    window.location.href = "cantwait.html"; // Replace with your desired URL
+                    //}, 1000); // 1 second delay for effect
+                })
+                .catch((error) => {
+                    console.error("Audio playback failed:", error);
+                    alert("Please allow audio playback in your browser settings.");
+                });
+        }
+		
+		 function showNext(currentIndex) {
+            // Hide current video
+            const currentContainer = document.getElementById(`video-${currentIndex}`);
+            currentContainer.classList.remove("active");
+
+            // Stop current audio
+            const currentAudio = document.getElementById(`audio-${currentIndex}`);
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            // Show next video
+            const nextContainer = document.getElementById(`video-${currentIndex + 1}`);
+            if (nextContainer) {
+                nextContainer.classList.add("active");
+            }
+
+            // Play paired audio
+            const nextAudio = document.getElementById(`audio-${currentIndex + 1}`);
+            if (nextAudio) {
+                nextAudio.play();
+            }
+        }
+		// Function to play a random audio
+        function playRandomAudio() {
+            const audios = ["wrgansaudio1", "wrgansaudio2", "wrgansaudio3", "wrgansaudio4"];
+            const randomAudioId = audios[Math.floor(Math.random() * audios.length)];
+            const audioElement = document.getElementById(randomAudioId);
+
+            if (audioElement) {
+                audioElement.play()
+                    .then(() => {
+                        console.log(`${randomAudioId} is playing`);
+                    })
+                    .catch((error) => {
+                        console.error("Audio playback failed:", error);
+                    });
+            }
+        }
+		 function endSequence() {
+            alert("Hope you had fun!");
+            // Optionally, redirect or restart the sequence
+        }
+    </script>
+</body>
+</html>
